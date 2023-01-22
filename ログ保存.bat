@@ -1,19 +1,16 @@
 @echo off
 setlocal
 
-rem ƒƒO•Û‘¶ƒtƒHƒ‹ƒ_‚ðŽw’è
-set LOGFILE_PATH="C:\Users\kouno\Desktop\ƒT[ƒoì‹ÆƒƒO"
+rem ãƒ­ã‚°ä¿å­˜ãƒ•ã‚©ãƒ«ãƒ€ã‚’æŒ‡å®š
+set LOGFILE_PATH="<ãƒ­ã‚°ä¿å­˜ãƒ•ã‚©ãƒ«ãƒ€>"
 
 set BEFORE_LOGFILENAME=%date:/=-%" "before_name.txt
 
-echo ƒNƒŠƒbƒvƒ{[ƒh‚Ì“à—e‚ð•Û‘¶‚µ‚Ü‚·B
+echo ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã®å†…å®¹ã‚’ä¿å­˜ã—ã¾ã™ã€‚
 powershell -command get-clipboard > %LOGFILE_PATH%\%BEFORE_LOGFILENAME%
 
-rem •Ï”LOG‚É1s‚µ‚©“ü‚ê‚ç‚ê‚È‚¢H‚Á‚Û‚¢ Ž¸”s—á
-rem for /f "usebackq" %%A in (`powershell -command get-clipboard -format text`) do set LOG=%%A
-
-set /p FILE_NAME="•t‚¯‚½‚¢ƒtƒ@ƒCƒ‹–¼‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢F"
-rem uyyyy-mm-dd ƒtƒ@ƒCƒ‹–¼.txtv‚ðÝ’è
+set /p FILE_NAME="ä»˜ã‘ãŸã„ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ï¼š"
+rem ã€Œyyyy-mm-dd ãƒ•ã‚¡ã‚¤ãƒ«å.txtã€ã‚’è¨­å®š
 set LOGFILE_NAME=%date:/=-%" "%FILE_NAME%.txt
 
 cd %LOGFILE_PATH%
@@ -21,16 +18,16 @@ ren %BEFORE_LOGFILENAME% %LOGFILE_NAME%
 
 if exist %LOGFILE_NAME% (
 	echo;
-	echo ƒƒO•Û‘¶‚ªŠ®—¹‚µ‚Ü‚µ‚½B
-	echo ƒtƒ@ƒCƒ‹–¼F%date:/=-% %FILE_NAME%.txt
+	echo ãƒ­ã‚°ä¿å­˜ãŒå®Œäº†ã—ã¾ã—ãŸã€‚
+	echo ãƒ•ã‚¡ã‚¤ãƒ«åï¼š%date:/=-% %FILE_NAME%.txt
 	echo;
 ) else (
 	echo;
-	echo ƒtƒ@ƒCƒ‹–¼‚ÉŽg—p‚Å‚«‚È‚¢•¶Žš‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚·B
+	echo ãƒ•ã‚¡ã‚¤ãƒ«åã«ä½¿ç”¨ã§ããªã„æ–‡å­—ãŒå«ã¾ã‚Œã¦ã„ã¾ã™ã€‚
 	echo;
 )
 
-echo 5•bŒãI—¹‚µ‚Ü‚·B
+echo 5ç§’å¾Œçµ‚äº†ã—ã¾ã™ã€‚
 timeout /t 5
 
 endlocal
