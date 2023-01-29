@@ -1,33 +1,51 @@
 @echo off
-setlocal
+setlocal enabledelayedexpansion
 
-rem ãƒ­ã‚°ä¿å­˜ãƒ•ã‚©ãƒ«ãƒ€ã‚’æŒ‡å®š
-set LOGFILE_PATH="<ãƒ­ã‚°ä¿å­˜ãƒ•ã‚©ãƒ«ãƒ€>"
+rem ƒƒO•Û‘¶ƒtƒHƒ‹ƒ_‚ðŽw’è
+set LOGFILE_PATH="<ƒƒO•Û‘¶ƒtƒHƒ‹ƒ_>"
 
 set BEFORE_LOGFILENAME=%date:/=-%" "before_name.txt
 
-echo ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã®å†…å®¹ã‚’ä¿å­˜ã—ã¾ã™ã€‚
+echo ƒNƒŠƒbƒvƒ{[ƒh‚Ì“à—e‚ð•Û‘¶‚µ‚Ü‚·B
 powershell -command get-clipboard > %LOGFILE_PATH%\%BEFORE_LOGFILENAME%
 
-set /p FILE_NAME="ä»˜ã‘ãŸã„ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ï¼š"
-rem ã€Œyyyy-mm-dd ãƒ•ã‚¡ã‚¤ãƒ«å.txtã€ã‚’è¨­å®š
+set /p FILE_NAME="•t‚¯‚½‚¢ƒtƒ@ƒCƒ‹–¼‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢F"
+rem uyyyy-mm-dd ƒtƒ@ƒCƒ‹–¼.txtv‚ðÝ’è
 set LOGFILE_NAME=%date:/=-%" "%FILE_NAME%.txt
 
+set FILE_NUM=1
+set count=0
 cd %LOGFILE_PATH%
+
+:name-define
+if exist %LOGFILE_NAME% (
+	set /a FILE_NUM+=1
+	set LOGFILE_NAME=%date:/=-%" "%FILE_NAME%_!FILE_NUM!.txt
+	set /a count+=1
+) else (
+	if %count% neq 0 (
+		set FILE_NAME=%FILE_NAME%_%FILE_NUM%
+	)
+	goto :END
+)
+goto :name-define
+:END
+
 ren %BEFORE_LOGFILENAME% %LOGFILE_NAME%
 
 if exist %LOGFILE_NAME% (
 	echo;
-	echo ãƒ­ã‚°ä¿å­˜ãŒå®Œäº†ã—ã¾ã—ãŸã€‚
-	echo ãƒ•ã‚¡ã‚¤ãƒ«åï¼š%date:/=-% %FILE_NAME%.txt
+	echo ƒƒO•Û‘¶‚ªŠ®—¹‚µ‚Ü‚µ‚½B
+	echo ƒtƒ@ƒCƒ‹–¼F%date:/=-% %FILE_NAME%.txt
+	explorer %LOGFILE_PATH%
 	echo;
 ) else (
 	echo;
-	echo ãƒ•ã‚¡ã‚¤ãƒ«åã«ä½¿ç”¨ã§ããªã„æ–‡å­—ãŒå«ã¾ã‚Œã¦ã„ã¾ã™ã€‚
+	echo ƒtƒ@ƒCƒ‹–¼‚ÉŽg—p‚Å‚«‚È‚¢•¶Žš‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚·B
 	echo;
 )
 
-echo 5ç§’å¾Œçµ‚äº†ã—ã¾ã™ã€‚
+echo 5•bŒãI—¹‚µ‚Ü‚·B
 timeout /t 5
 
 endlocal
