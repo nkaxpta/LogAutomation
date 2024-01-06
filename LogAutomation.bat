@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 rem ログ保存フォルダを指定
-set LOGFILE_PATH="<ログ保存フォルダ>"
+set LOGFILE_PATH="${ログ保存フォルダ}"
 
 set BEFORE_LOGFILENAME=%date:/=-%" "before_name.txt
 

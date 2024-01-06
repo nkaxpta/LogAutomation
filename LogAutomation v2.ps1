@@ -1,5 +1,5 @@
 # ログ保存フォルダを指定
-$LOGFILE_PATH = "<ログ保存フォルダ>"
+$LOGFILE_PATH = "${ログ保存フォルダ}"
 
 $BEFORE_LOGFILENAME = (Get-Date -Format "yyyy-MM-dd") + " before_name.txt"
 
